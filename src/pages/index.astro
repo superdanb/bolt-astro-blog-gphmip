@@ -1,0 +1,68 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body class="bg-gray-50">
+		<Header />
+		<main class="max-w-4xl mx-auto px-4 py-12">
+			<div class="space-y-8">
+				<section class="text-center space-y-4">
+					<h1 class="text-5xl font-bold text-gray-900">👋 Hi, I'm Dan</h1>
+					<p class="text-xl text-gray-600 max-w-2xl mx-auto">
+						I'm a Software Engineer and Tech Lead with over a decade of experience building products and leading teams.
+						Currently, I'm focused on creating exceptional developer experiences and tools that empower developers to build better software.
+					</p>
+				</section>
+
+				<section class="bg-white rounded-2xl shadow-sm p-8 space-y-4">
+					<h2 class="text-2xl font-bold text-gray-900">What I Do</h2>
+					<ul class="space-y-2 text-gray-600">
+						<li class="flex items-center gap-2">
+							<span class="text-primary">▸</span>
+							Lead engineering teams and mentor developers
+						</li>
+						<li class="flex items-center gap-2">
+							<span class="text-primary">▸</span>
+							Design and architect scalable software solutions
+						</li>
+						<li class="flex items-center gap-2">
+							<span class="text-primary">▸</span>
+							Build developer tools and improve developer experience
+						</li>
+						<li class="flex items-center gap-2">
+							<span class="text-primary">▸</span>
+							Write about software engineering and leadership
+						</li>
+					</ul>
+				</section>
+
+				<section class="bg-white rounded-2xl shadow-sm p-8 space-y-4">
+					<h2 class="text-2xl font-bold text-gray-900">Experience</h2>
+					<ul class="space-y-4">
+						<li class="border-l-4 border-primary pl-4">
+							<h3 class="font-semibold text-gray-900">Tech Lead at StackBlitz</h3>
+							<p class="text-gray-600">Building the future of web development</p>
+						</li>
+						<li class="border-l-4 border-primary pl-4">
+							<h3 class="font-semibold text-gray-900">Senior Software Engineer</h3>
+							<p class="text-gray-600">Various tech companies</p>
+						</li>
+						<li class="border-l-4 border-primary pl-4">
+							<h3 class="font-semibold text-gray-900">Full-stack Development</h3>
+							<p class="text-gray-600">Modern web technologies</p>
+						</li>
+					</ul>
+				</section>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

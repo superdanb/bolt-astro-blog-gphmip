@@ -1,0 +1,62 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+
+  <body class="bg-dark-50">
+    <Header />
+    <main class="max-w-4xl mx-auto px-4 py-12">
+      <article class="bg-dark-100 rounded-2xl border border-dark-200 overflow-hidden">
+        {heroImage && (
+          <div class="w-full aspect-video">
+            <img
+              src={heroImage}
+              alt=""
+              class="w-full h-full object-cover"
+            />
+          </div>
+        )}
+        <div class="p-8 md:p-12">
+          <div class="max-w-2xl mx-auto">
+            <div class="mb-8 text-center">
+              <div class="flex items-center justify-center gap-2 text-sm text-dark-500 mb-4">
+                <FormattedDate date={pubDate} />
+                {updatedDate && (
+                  <span class="text-dark-500">
+                    (Updated: <FormattedDate date={updatedDate} />)
+                  </span>
+                )}
+              </div>
+              <h1 class="text-4xl font-bold text-white mb-4">{title}</h1>
+              {tags && (
+                <div class="flex flex-wrap justify-center gap-2">
+                  {tags.map((tag) => (
+                    <span class="bg-dark-200 px-3 py-1 rounded-full text-sm text-dark-600">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div class="prose prose-invert prose-lg max-w-none">
+              <slot />
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>

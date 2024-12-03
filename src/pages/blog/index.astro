@@ -1,0 +1,37 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE } from '../../consts';
+import { getCollection } from 'astro:content';
+import BlogCard from '../../components/BlogCard.astro';
+
+const posts = (await getCollection('blog', ({ data }) => {
+  return import.meta.env.PROD ? !data.draft : true;
+})).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`Blog | ${SITE_TITLE}`} description="Articles about software engineering, developer tools, and team leadership" />
+  </head>
+  <body class="bg-gray-50">
+    <Header />
+    <main class="max-w-4xl mx-auto px-4 py-12">
+      <div class="space-y-8">
+        <div class="text-center space-y-4">
+          <h1 class="text-4xl font-bold text-gray-900">Blog</h1>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Thoughts and insights about software engineering, developer tools, and team leadership
+          </p>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-2">
+          {posts.map((post) => <BlogCard post={post} />)}
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
